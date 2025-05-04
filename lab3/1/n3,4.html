@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>n3,4</title>
+</head>
+<body>
+  <button id="clicker-button">Клик!</button>
+  <p>Счётчик: <span id="counter">0</span></p>
+  <p>Среднее кликов в секунду: <span id="cps">0</span></p>
+
+  <script>
+    const button     = document.getElementById('clicker-button');
+    const counterEl  = document.getElementById('counter');
+    const cpsEl      = document.getElementById('cps');
+
+    let count     = parseInt(localStorage.getItem('count'), 10) || 0;
+    let startTime = parseInt(localStorage.getItem('startTime'), 10);
+
+    if (!startTime) {
+      startTime = Date.now();
+      localStorage.setItem('startTime', startTime);
+    }
+
+    counterEl.textContent = count;
+    updateCPS();
+
+    button.addEventListener('click', () => {
+      count++;
+      localStorage.setItem('count', count);
+      counterEl.textContent = count;
+      updateCPS();
+    });
+
+    function updateCPS() {
+      const elapsed = (Date.now() - startTime) / 1000;
+      const cps     = elapsed > 0 ? (count / elapsed).toFixed(2) : '0.00';
+      cpsEl.textContent = cps;
+    }
+  </script>
+</body>
+</html>

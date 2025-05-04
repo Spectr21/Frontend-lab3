@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>n1</title>
+</head>
+<body>
+  <h1>Добро пожаловать!</h1>
+
+  <p style="font-size:1.2em; margin-top:0;"><span id="greeting">
+    <em>Приветствуем</em> <u>вас</u> <strong>в нашем</strong>
+  </span><a href="http://example.com/">магазине</a>!</p>
+
+  <p>&lt;h1&gt;<span style="font-family: Comic Sans MS, Comic Sans, cursive;">Теорема Пифагора</span>&lt;/h1&gt;: c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup></p>
+  <table style="border:2px solid black; border-collapse:collapse; background-color:#80ffff;">
+    <tr>
+      <td colspan="2" style="border:2px solid black; font-weight:normal; text-align:left; padding:8px;">
+        Информация
+      </td>
+    </tr>
+    <tr>
+      <td style="border:2px solid black; padding:8px;">
+        Старая цена: <s>1000</s> ₽
+      </td>
+      <td style="border:2px solid black; padding:8px;">
+        Новая цена: 500 ₽
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    const el = document.getElementById('greeting');
+    const colors = ['red', 'blue'];
+    const text = el.textContent;
+    el.innerHTML = '';
+    for (let i = 0; i < text.length; i++) {
+      const span = document.createElement('span');
+      span.textContent = text[i];
+      span.style.color = colors[i % colors.length];
+      el.append(span);
+    }
+  </script>
+</body>
+</html>
